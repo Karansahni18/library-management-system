@@ -1,18 +1,30 @@
-## Getting Started
+# Library Management System
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+A console-based Java application to manage books, members, and borrowing/returning workflows.
 
-## Folder Structure
+## Features
+- Add and track books with availability status
+- Support for Student and Faculty members with different borrowing limits
+- Borrow and return books with due-date tracking
+- List all currently available books
 
-The workspace contains two folders by default, where:
+## Tech Stack
+- Java (core — OOP, collections, generics)
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## Project Structure
+```
+src/com/karan/library
+├── model/       → Book, Member, StudentMember, FacultyMember, BorrowRecord, BookStatus
+├── repository/  → Library (in-memory storage)
+├── service/     → BorrowingService (business logic)
+└── Main.java    → entry point
+```
+## How to Run
+1. Clone the repo: `git clone https://github.com/Karansahni18/library-management-system.git`
+2. Open in VS Code with the Java Extension Pack installed
+3. Run `Main.java`
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## What I Learned
+- OOP fundamentals: inheritance, abstraction, polymorphism, composition
+- Separating concerns across model/repository/service layers
+- Git and GitHub basics: init, commit, push

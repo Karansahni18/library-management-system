@@ -27,7 +27,8 @@ public class Main {
             System.out.println("4. Return Book");
             System.out.println("5. List Available Books");
             System.out.println("6. Search Book by Title");
-            System.out.println("7. Exit");
+            System.out.println("7. View Member Borrowed Books");
+            System.out.println("8. Exit");
             System.out.print("Enter choice: ");
 
             int choice = scanner.nextInt();
@@ -128,7 +129,29 @@ public class Main {
                         System.out.println("No book found with the title: " + bookTitle);
                     }
                     break;
-                case 7:
+                case 7 :
+                    System.out.print("Enter Member ID to view borrowed books:");
+                    int typedId = scanner.nextInt();
+                    scanner.nextLine();
+                    Member viewMember = library.findMemberById(typedId);
+                    boolean found1 = false;
+                    if(viewMember == null) {
+                        System.out.println("No member found with ID: " + typedId);
+                    } else {
+                        for(BorrowRecord record : library.getBorrowRecords()) {
+                            if(record.getMember().getMemberId() == typedId && record.getReturnDate() == null) {
+                                System.out.println("Borrowed Book: " + record.getBook().getTitle() +
+                                " (ISBN: " + record.getBook().getIsbn() + "), Borrow Date: " +
+                                record.getBorrowDate() + ", Due Date: " + record.getDueDate());
+                                found1 = true;
+                            }
+                        }
+                        if(!found1) {
+                            System.out.println("This member has no books currently borrowed.");
+                        }
+                    }
+                    break;
+                case 8:
                     System.out.println("Exiting...");
                     running = false;
                     break;

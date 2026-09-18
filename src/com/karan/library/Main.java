@@ -8,6 +8,9 @@ import com.karan.library.model.BorrowRecord;
 import com.karan.library.repository.Library;
 import com.karan.library.service.BorrowingService;
 import java.util.Scanner;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args){
@@ -28,7 +31,8 @@ public class Main {
             System.out.println("5. List Available Books");
             System.out.println("6. Search Book by Title");
             System.out.println("7. View Member Borrowed Books");
-            System.out.println("8. Exit");
+            System.out.println("8. Sort Books by Title");
+            System.out.println("9. Exit");
             System.out.print("Enter choice: ");
 
             int choice = scanner.nextInt();
@@ -152,10 +156,17 @@ public class Main {
                     }
                     break;
                 case 8:
+                    List<Book> sortBooksByTitle = new ArrayList<>(library.getAllBooks());
+                    sortBooksByTitle.sort(Comparator.comparing(Book::getTitle));
+                    System.out.println("Books sorted by title:");
+                    for(Book b : sortBooksByTitle) {
+                        System.out.println(b.getTitle() + " by " + b.getAuthor());
+                    }
+                    break;
+                case 9:
                     System.out.println("Exiting...");
                     running = false;
                     break;
-
                 default:
                     System.out.println("Invalid choice, try again.");
                     break;
